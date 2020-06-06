@@ -31,7 +31,7 @@
  * Basic settings can be found in Configuration.h
  *
  */
-#define CONFIGURATION_ADV_H_VERSION 020005
+#define CONFIGURATION_ADV_H_VERSION 020006
 
 // @section temperature
 
@@ -1626,7 +1626,9 @@
 #endif
 
 /**
- * Override MIN_PROBE_EDGE for each side of the build plate
+ * Probing Margins
+ *
+ * Override PROBING_MARGIN for each side of the build plate
  * Useful to get probe points to exact positions on targets or
  * to allow leveling to avoid plate clamps on only specific
  * sides of the bed. With NOZZLE_AS_PROBE negative values are
