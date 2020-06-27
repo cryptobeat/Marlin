@@ -695,7 +695,7 @@
    * differs, a mode set eeprom write will be completed at initialization.
    * Use the option below to force an eeprom write to a V3.1 probe regardless.
    */
-//#define BLTOUCH_SET_5V_MODE
+#define BLTOUCH_SET_5V_MODE
 
 /**
    * Safety: Activate if connecting a probe with an unknown voltage mode.
@@ -807,7 +807,7 @@
 #define DEFAULT_STEPPER_DEACTIVE_TIME 120
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
-#define DISABLE_INACTIVE_Z true // Set to false if the nozzle will fall down on your printed part when print has finished.
+#define DISABLE_INACTIVE_Z false // Set to false if the nozzle will fall down on your printed part when print has finished.
 #define DISABLE_INACTIVE_E true
 
 #define DEFAULT_MINIMUMFEEDRATE 0.0 // minimum feedrate
@@ -890,7 +890,7 @@
  * Note: HOTEND_OFFSET and CALIBRATION_OBJECT_CENTER must be set to within
  *       ±5mm of true values for G425 to succeed.
  */
-//#define CALIBRATION_GCODE
+// #define CALIBRATION_GCODE
 #if ENABLED(CALIBRATION_GCODE)
 
 #define CALIBRATION_MEASUREMENT_RESOLUTION 0.01 // mm
@@ -958,7 +958,7 @@
 // Microstep setting (Only functional when stepper driver microstep pins are connected to MCU.
 #define MICROSTEP_MODES    \
   {                        \
-    16, 16, 16, 16, 16, 16 \
+    32, 32, 32, 16, 16, 16 \
   } // [1,2,4,8,16]
 
 /**
@@ -1578,7 +1578,7 @@
 
 //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
-#define BABYSTEP_ZPROBE_OFFSET // Combine M851 Z and Babystepping
+// #define BABYSTEP_ZPROBE_OFFSET // Combine M851 Z and Babystepping
 #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
 //#define BABYSTEP_HOTEND_Z_OFFSET      // For multiple hotends, babystep relative Z offsets
 #define BABYSTEP_ZPROBE_GFX_OVERLAY // Enable graphical overlay on Z-offset editor
@@ -1602,11 +1602,11 @@
  *
  * See https://marlinfw.org/docs/features/lin_advance.html for full instructions.
  */
-#define LIN_ADVANCE
+// #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
 //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
 #define LIN_ADVANCE_K 0 // Unit: mm compression per 1mm/s extruder speed
-//#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
+#define LA_DEBUG        // If enabled, this will generate debug information output over USB.
 //#define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
 #endif
 
@@ -1663,7 +1663,7 @@
  * Repeatedly attempt G29 leveling until it succeeds.
  * Stop after G29_MAX_RETRIES attempts.
  */
-#define G29_RETRY_AND_RECOVER
+// #define G29_RETRY_AND_RECOVER
 #if ENABLED(G29_RETRY_AND_RECOVER)
 #define G29_MAX_RETRIES 4
 #define G29_HALT_ON_FAILURE
@@ -1730,7 +1730,7 @@
 #endif
 
 // Support for G5 with XYZE destination and IJPQ offsets. Requires ~2666 bytes.
-//#define BEZIER_CURVE_SUPPORT
+#define BEZIER_CURVE_SUPPORT
 
 /**
  * Direct Stepping
@@ -1817,7 +1817,7 @@
 #if BOTH(SDSUPPORT, DIRECT_STEPPING)
 #define BLOCK_BUFFER_SIZE 8
 #elif ENABLED(SDSUPPORT)
-#define BLOCK_BUFFER_SIZE 16
+#define BLOCK_BUFFER_SIZE 32
 #else
 #define BLOCK_BUFFER_SIZE 16
 #endif

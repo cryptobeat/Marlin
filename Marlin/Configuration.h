@@ -759,7 +759,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT \
   {                                 \
-    160, 160, 800, 740              \
+    160, 160, 800, 810              \
   }
 
 /**
@@ -769,7 +769,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 25, 25         \
+    999, 999, 25, 25         \
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -788,10 +788,10 @@
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    600, 600, 100, 800           \
+    800, 800, 100, 10000         \
   }
 
-//#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
+#define LIMITED_MAX_ACCEL_EDITING // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
 #define MAX_ACCEL_EDIT_VALUES \
   {                           \
@@ -807,9 +807,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 2000         // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 2000 // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION 2000  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION 800          // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION 3000 // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION 800   // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -819,15 +819,15 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
 #define DEFAULT_XJERK 10.0
 #define DEFAULT_YJERK 10.0
 #define DEFAULT_ZJERK 0.3
 
-//#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
+#define TRAVEL_EXTRA_XYJERK 0.0 // Additional jerk allowance for all travel moves
 
-//#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
+#define LIMITED_JERK_EDITING // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
 #if ENABLED(LIMITED_JERK_EDITING)
 #define MAX_JERK_EDIT_VALUES \
   {                          \
@@ -846,7 +846,7 @@
  *   http://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-#define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
+#define JUNCTION_DEVIATION_MM 0.033 // (mm) Distance from real junction edge
 #endif
 
 /**
@@ -1006,13 +1006,12 @@
  */
 #define NOZZLE_TO_PROBE_OFFSET \
   {                            \
-    -44, -10, -1.20            \
+    -44, -10, -0.92            \
   }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define MIN_PROBE_EDGE 40
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 40
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -1032,7 +1031,7 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-#define MULTIPLE_PROBING 3
+#define MULTIPLE_PROBING 2
 #define EXTRA_PROBING 1
 
 /**
@@ -1206,7 +1205,7 @@
 // After a runout is detected, continue printing this length of filament
 // before executing the runout script. Useful for a sensor at the end of
 // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-//#define FILAMENT_RUNOUT_DISTANCE_MM 25
+#define FILAMENT_RUNOUT_DISTANCE_MM 25
 
 #ifdef FILAMENT_RUNOUT_DISTANCE_MM
 // Enable this option to use an encoder disc that toggles the runout pin
@@ -1257,14 +1256,14 @@
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
 #define AUTO_BED_LEVELING_BILINEAR
-//#define AUTO_BED_LEVELING_UBL
-//#define MESH_BED_LEVELING
+// #define AUTO_BED_LEVELING_UBL
+// #define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1529,7 +1528,7 @@
 // Preheat Constants
 #define PREHEAT_1_LABEL "PLA"
 #define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED 60
+#define PREHEAT_1_TEMP_BED 50
 #define PREHEAT_1_FAN_SPEED 0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL "ABS"
